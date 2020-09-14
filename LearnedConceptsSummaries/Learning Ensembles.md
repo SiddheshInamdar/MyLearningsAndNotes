@@ -41,8 +41,9 @@ How to choose models and how to aggregate results, two ways to do that
 > 2. Gradient Boosting
 # Adaptive Boosting (AdaBoost):
 model - weighted sum of weak learners
-
+https://github.com/SiddheshInamdar/MyLearningsAndNotes/blob/master/LearnedConceptsSummaries/adaboost.JPG  
 instead of doing it repeatedly, we try to do that in a single shot 
+
 
 
 
