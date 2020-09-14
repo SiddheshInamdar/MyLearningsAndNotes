@@ -37,10 +37,12 @@ Produces a method that is less biased than components. unlike bagging algorithms
 > Each new model focuses its efforts on observations most difficult to identify, creates a strong learner with even lower bias.(plus: also reduces variance)
 - main focus on reducing bias, so base models involved have high bias. (computations can't be parallel)
 How to choose models and how to aggregate results, two ways to do that
-> AdaBoost
-> Gradient Boosting
+> 1. AdaBoost
+> 2. Gradient Boosting
 # Adaptive Boosting (AdaBoost):
+model - weighted sum of weak learners
 
+instead of doing it repeatedly, we try to do that in a single shot 
 
 
 
