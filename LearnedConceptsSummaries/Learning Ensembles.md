@@ -1,10 +1,11 @@
-# Different ensembles techniques:
+# Different ensembles techniques: 
+### By: Siddhesh Inamdar
 Ensamble methods involve multiple models (called weak learners), guessing that together they will approximate the model in a better way.
 Most of the single learners have a high bias (e.g. low degrees of freedom) or high variance (e.g. high degrees of freedom) 
 Homogeneous we learners form homogenous ensembles (opposite for heterogeneous) 
 **the weak models should be aggregated in the correct manner**
 e.g. If we choose base model with low bias high variance, we should aggregate in a way to reduce variance (same for bias). 
-> **Three kinds of sub-classes:** 
+**Three kinds of sub-classes:** 
 > 1. Boosting
 > 2. Bagging
 > 3. Stacking
@@ -31,6 +32,14 @@ Sampling has an effect that all trees do not look the same in structure in decis
 Observations with missing data can be classified or regressed  
   
 ## Boosting Methods:
+**Sequential methods**, weaker models fitted are not independent to each other. Iterative fitting - Training of a model given in a step depenas in a model in previous step.
+Produces a method that is less biased than components. unlike bagging algorithms, the main aim is not only to reduce variance, but to get a model that would consider those samples in data that were handled badly in previous model. (adaptive technique)
+> Each new model focuses its efforts on observations most difficult to identify, creates a strong learner with even lower bias.(plus: also reduces variance)
+- main focus on reducing bias, so base models involved have high bias. (computations can't be parallel)
+How to choose models and how to aggregate results, two ways to do that
+> AdaBoost
+> Gradient Boosting
+# Adaptive Boosting (AdaBoost):
 
 
 
