@@ -1,4 +1,4 @@
-#https://github.com/SiddheshInamdar/MyLearningsAndNotes/new/master/LearnedConceptsSummaries
+#Markov Inequlity, Chebychev Inequality and Law of Large numbers
 ## Introductions:
 For a random variable following normal distributions. 
 > 68% of points will lie between 1 standard deviation.  
