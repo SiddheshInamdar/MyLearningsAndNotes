@@ -1,4 +1,4 @@
-# Activation Function:
+# Activation Functions:
 Activation functions here are described with thier uses and misuses
 ## Desirable properties for activation functions:
 ### 1. NonLinearity:
