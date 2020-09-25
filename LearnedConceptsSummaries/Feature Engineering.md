@@ -1,3 +1,5 @@
+## Feature Engineering: 
+Siddhesh Inamdar
 ### **1. Binarization of dataset:**
 - Sometimes some values in data are anonlymously large (in orders of magnitudes), the model would be pulled by these large values while training. So to make the model robust, we binarize the count and clip all value greater than the threshold to the threshold.  
 e.g.: In song predictor model, some people might listen to songs on infinite loop hence, unnecesarily increasing the number of counts. SO we clip them to make model robust.  
@@ -62,3 +64,18 @@ The ℓ2 norm sums the squares of the values of the features across data points,
 >>> df['l2_normalized'] = preproc.normalize(df[['n_tokens_content']], axis=0)
 ```
 for all scalings and normalizations, the distribution shape will remain the same only the x -axis will change.
+### Interaction features:
+Create a new deature as a dot.product of existing features (logical AND), call them interaction features.
+```python
+>>> import sklearn.preprocessing as preproc
+# Create pairwise interaction features, skipping the constant bias term
+>>> X2 = preproc.PolynomialFeatures(include_bias=False).fit_transform(X)
+```  
+Pairwise features are expensive to calculate, O(n^2), n -> number of features. Similarly you can perform higher order intercation features.
+### Feature Selection:
+Prune useless features, save time
+- **Filtering:**  Remove features on basis of some correlation of parameters.
+- **Wrapper Methods:** Expensive technique, but quite helpful. Makes sure we wont prune those features that are uninformative by themselves but helpful in combinations.
+- **Embedded methods:** 
+Follow feature selection as a model training process, Lasso and Elastic Net. l1 regularizer -> sparsity constrint on model (forces t use fewer features). In between wrapper methods and filtering methods.
+
