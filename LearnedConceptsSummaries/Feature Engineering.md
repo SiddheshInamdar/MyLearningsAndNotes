@@ -3,7 +3,7 @@ Siddhesh Inamdar
 ### **1. Binarization of dataset:**
 - Sometimes some values in data are anonlymously large (in orders of magnitudes), the model would be pulled by these large values while training. So to make the model robust, we binarize the count and clip all value greater than the threshold to the threshold.  
 e.g.: In song predictor model, some people might listen to songs on infinite loop hence, unnecesarily increasing the number of counts. SO we clip them to make model robust.  
-> - large counts are bad in unsupervised learning like k-means clustering (uses Euclidean distance as a similarity function to measure the similarity between data points. A large count in one element of the data vector would outweigh the similarity in all other elements, which could throw off the entire similarity measurement.)  
+- large counts are bad in unsupervised learning like k-means clustering (uses Euclidean distance as a similarity function to measure the similarity between data points. A large count in one element of the data vector would outweigh the similarity in all other elements, which could throw off the entire similarity measurement.)  
 
 - Other method is *Quantization of count* into bins (convert continuous value to discrete one)   
 - **Fixed width binning**: linear or custom - Algebraic or geometric depending on the span - then take log of the count for bringing them closer
