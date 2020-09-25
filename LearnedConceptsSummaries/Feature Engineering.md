@@ -27,3 +27,38 @@ Since a0 = 1, we have loga(1) = 0. This means that the log function maps the sma
 # exploding into negative infinity in case the count is zero.
 >>> biz_df['log_review_count'] = np.log10(biz_df['review_count'] + 1)
 ```
+- **Power Transforms: Generalizations of Log Transforms** (these are variance stabilizing transforms)  
+![image](https://user-images.githubusercontent.com/64798024/94251767-a3d73000-ff40-11ea-987f-073867b19100.png)  
+Box-Cox transform for λ = 0 (the log transform), λ = 0.25, λ = 0.5 (a scaled and shifted version of the square root transform), λ = 0.75, and λ = 1.5. Setting λ to be less than 1 compresses the higher values, and setting λ higher than 1 has the opposite effect.
+![image](https://user-images.githubusercontent.com/64798024/94251997-f31d6080-ff40-11ea-98ad-c7c7fadcc4fc.png)  
+Box Cox works only for positive data, for negetive, shift by constant, then apply. 
+```python
+>>> from scipy import stats
+>>> rc_log = stats.boxcox(biz_df['review_count'], lmbda=0)
+By default, the scipy implementation of Box-Cox transform finds the lambda
+# parameter that will make the output the closest to a normal distribution
+>>> rc_bc, bc_params = stats.boxcox(biz_df['review_count'])
+```
+A probability plot, or probplot, is an easy way to visually compare an empirical distribution of data against a theoretical distribution. This is essentially a scatter plot of observed versus theoretical quantiles.
+##### Feature Scaling and Normalization:
+Models that are smooth functions of input get affected by order of magnitude of data. Unlike tree based models who don't.
+- **Min Max Scaling:**
+![image](https://user-images.githubusercontent.com/64798024/94257488-003e4d80-ff49-11ea-8589-1010097394ce.png)  
+- **Standardization (Variance Scaling):** 
+It subtracts off the mean of the feature (over all data points) and divides by the variance.
+Hence, it can also be called variance scaling. The resulting scaled feature has a mean of 0 and a variance of 1.  
+>Use caution when performing min-max scaling and standardization on sparse features. Both subtract a quantity from the original
+feature value. For min-max scaling, the shift is the minimum over all values of the current feature; for standardization, it is the mean.
+If the shift is not zero, then these two transforms can turn a sparse feature vector where most values are zero into a dense one. This in
+turn could create a huge computational burden for the classifier, depending on how it is implemented.
+- **l_square Normalization:**
+![image](https://user-images.githubusercontent.com/64798024/94258063-e9e4c180-ff49-11ea-8d4a-7aa397acdb70.png)  
+The ℓ2 norm sums the squares of the values of the features across data points, then takes the square root. After ℓ2 normalization, the feature column has norm 1.
+```python
+>>> import sklearn.preprocessing as preproc
+# Standardization - note that by definition, some outputs will be negative
+>>> df['standardized'] = preproc.StandardScaler().fit_transform(df[['n_tokens_content']])
+# L2-normalization
+>>> df['l2_normalized'] = preproc.normalize(df[['n_tokens_content']], axis=0)
+```
+for all scalings and normalizations, the distribution shape will remain the same only the x -axis will change.
