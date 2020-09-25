@@ -1,4 +1,4 @@
-##### **1. Binarization of dataset:**
+### **1. Binarization of dataset:**
 - Sometimes some values in data are anonlymously large (in orders of magnitudes), the model would be pulled by these large values while training. So to make the model robust, we binarize the count and clip all value greater than the threshold to the threshold.  
 e.g.: In song predictor model, some people might listen to songs on infinite loop hence, unnecesarily increasing the number of counts. SO we clip them to make model robust.  
 > - large counts are bad in unsupervised learning like k-means clustering (uses Euclidean distance as a similarity function to measure the similarity between data points. A large count in one element of the data vector would outweigh the similarity in all other elements, which could throw off the entire similarity measurement.)  
@@ -20,7 +20,7 @@ array([1, 2, 3, 0, 0, 1, 1, 2, 2, 3, 3, 0, 0, 2, 1, 0, 3], dtype=int64)
 >>> large_counts_series.quantile([0.25, 0.5, 0.75])
 ```
 
-##### 2. Log Transformation:
+### 2. Log Transformation:
 Since a0 = 1, we have loga(1) = 0. This means that the log function maps the small range of numbers between (0, 1) to the entire range of negative numbers (–∞, 0). The function log10(x) maps the range of [1, 10] to [0, 1], [10, 100] to [1, 2], and so on. In other words, the log function compresses the range of large numbers and expands the range of small numbers. The larger x is, the slower log(x) increments. Log transform is good for dealing with high tailed distributions, where more probability is placed on rhs tail, log streches the tail on LHS and compresses tail on RHS.
 ```python
 # Note that we add 1 to the raw count to prevent the logarithm from
@@ -40,7 +40,7 @@ By default, the scipy implementation of Box-Cox transform finds the lambda
 >>> rc_bc, bc_params = stats.boxcox(biz_df['review_count'])
 ```
 A probability plot, or probplot, is an easy way to visually compare an empirical distribution of data against a theoretical distribution. This is essentially a scatter plot of observed versus theoretical quantiles.
-##### Feature Scaling and Normalization:
+### 3. Feature Scaling and Normalization:
 Models that are smooth functions of input get affected by order of magnitude of data. Unlike tree based models who don't.
 - **Min Max Scaling:**
 ![image](https://user-images.githubusercontent.com/64798024/94257488-003e4d80-ff49-11ea-8589-1010097394ce.png)  
