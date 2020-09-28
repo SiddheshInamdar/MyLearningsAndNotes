@@ -79,3 +79,27 @@ Prune useless features, save time
 - **Embedded methods:** 
 Follow feature selection as a model training process, Lasso and Elastic Net. l1 regularizer -> sparsity constrint on model (forces t use fewer features). In between wrapper methods and filtering methods.
 
+## Categorical variable:
+Categorical variables cannot be ordered. (Oil is neither greater than nor less than travel as an industry type.) *Non Ordinal*.  
+It is tempting to simply assign an integer, say from 1 to k, to each of k possible categories—but the resulting values would be orderable against each other, which should not be permissible for categories.
+- **One Hot Encoding**
+Use a group of bits, if in a variable, only one bit can be 'on' at a point. It is called one-hot encoding. Different linear combinations of the features can make the same predictions, so we would need to jump through extra hoops to understand the effect of a feature on the prediction.
+> 1. Each feature clearly corrosponds to a category
+> 2. missing data can be encoded as all zero vector 
+> 3. Output is overall mean of target variable
+- **Dummy Coding**
+Done by only considering k-1 features. All except one feature are coded. That one feature is represented with all zeros.
+> 1. Make unique and interpretable models
+> 2. Cant handle missing data
+> 3. encodes effect of each category to the reference category. (strange) 
+- **Effect Coding**
+reference category is representd with '-1'.
+> 1. Uses different code for reference category. 
+> 2. '-1' vector is dense. expensive to store. *So not used very often*
+## Dealing with large categorical variables:
+Existing solutions:
+> 1. Do nothing fancy with data, use one-hot encoding and simpler models.
+> 2. Compress features: a. Feature hashing (linear models), b. bin counting (trees)
+- **Feature hashing**
+A **hash function** is a deterministic function that maps a potentially unbounded integer to a finite integer range [1, m]. Since the input domain is potentially larger than the output range, multiple numbers may get mapped to the same output. Also can be used with a variation of a signed bit.
+One downside to feature hashing is that the hashed features, being aggregates of original features, are no longer interpretable.
